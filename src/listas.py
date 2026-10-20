@@ -13,12 +13,30 @@ def genera_aleatorios(n: int, minimo: int, maximo: int) -> list[int]:
     Devuelve:
     list[int]: Lista con n números enteros aleatorios.
     """
-    # TODO: Implementa esta función
-    pass
+    res = []
+    for i in range(n):
+        numero = random.randint(minimo, maximo)
+        if i > 0: # es lo mismo que preguntar si len(res) > 0
+            while numero == res[-1]:
+                numero = random.randint(minimo, maximo)
+
+        res.append(numero)
+
+    return res
+
+
+
+
+
+
+
+
+
 
 def intercala_listas(lista1: list, lista2: list) -> list:
     """
-    Intercala dos listas. Si una lista es mayor que la otra, los elementos sobrantes se añaden al final.
+    Intercala dos listas. Si una lista es mayor que la otra, 
+    los elementos sobrantes se añaden al final.
 
     Parámetros:
     lista1 (list): Primera lista.
@@ -27,8 +45,30 @@ def intercala_listas(lista1: list, lista2: list) -> list:
     Devuelve:
     list: Lista resultante de intercalar las dos listas.
     """
-    # TODO: Implementa esta función
-    pass
+    res = []
+    for elem1, elem2 in zip(lista1, lista2):
+        res.append(elem1)
+        res.append(elem2)
+
+    tam1 = len(lista1)
+    tam2 = len(lista2)
+
+    if tam1 > tam2:
+        # Añadir el trozo que sobra de lista1 a res
+        res.extend(lista1[tam2:]) # Hay que añadir este trozo al final de res
+
+    elif tam2 > tam1:
+        res.extend(lista2[tam1:]) # Hay que añadir este trozo al final de res
+
+    return res
+
+
+
+
+
+
+
+
 
 def mezcla_ordenadas(lista1: list, lista2: list) -> list:
     """
@@ -41,8 +81,29 @@ def mezcla_ordenadas(lista1: list, lista2: list) -> list:
     Devuelve:
     list: Lista resultante de mezclar las dos listas ordenadas.
     """
-    # TODO: Implementa esta función
-    pass
+    res = []
+    i = 0 # posición por la que vamos de lista1 
+    j = 0 # posición por la que vamos de lista2
+    while i < len(lista1) and  j < len(lista2):
+        if lista1[i] < lista2[j]:
+            res.append(lista1[i])
+            i += 1
+        else:
+            res.append(lista2[j])
+            j += 1
+
+    if i < len(lista1): # Aún quedaban elementos de lista1
+        res.extend(lista1[i:])
+    else:
+        res.extend(lista2[j:])
+
+    return res
+
+    
+
+
+
+    
 
 def ordena_bubble_sort(lista: list) -> None:
     """
@@ -50,9 +111,22 @@ def ordena_bubble_sort(lista: list) -> None:
 
     Parámetros:
     lista (list[int]): Lista de números enteros a ordenar.
-    """    
-    # TODO: Implementa esta función
-    pass
+    """
+    # TODO: (TOTHINK)
+    # No puedo intercambiar posiciones de la lista con el for que hemos
+    # usado => PENSAR OTRAS OPCIONES
+    hay_intercambio = True
+    while hay_intercambio:    
+        hay_intercambio = False
+        for e1, e2 in zip(lista, lista[1:]): # Recorro los elementos consecutivos
+            if e1 > e2:
+                e1, e2 = e2, e1
+                hay_intercambio = True
+
+
+
+
+    
 
 def inserta_ordenado(lista_nombres: list[str], nombre: str) -> None:
     """
