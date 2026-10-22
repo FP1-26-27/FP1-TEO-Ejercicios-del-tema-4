@@ -8,8 +8,19 @@ def es_matriz(matriz: list[list[int | float]]) -> bool:
     Devuelve:
     bool: True si todas las filas tienen el mismo número de elementos.
     """
-    # TODO: Implementa esta función
-    pass
+    if len(matriz) == 0:
+        return True
+    # TODO: Ejecutar con el depurador
+    # Esto es un esquema de para todo
+    num_columnas = len(matriz[0])
+
+    es_rectangular = True
+    for fila in matriz[1:]:
+        # Si NO se cumple la condicion
+        if len(fila) != num_columnas:
+            es_rectangular = False
+            break
+    return es_rectangular
 
 
 def suma_matrices(
